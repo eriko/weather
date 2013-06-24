@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  rise: 2013-01-28 13:19:39
+  set: 2013-01-28 13:19:39
+
+two:
+  rise: 2013-01-28 13:19:39
+  set: 2013-01-28 13:19:39

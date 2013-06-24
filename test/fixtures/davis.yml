@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  recorded_datetime: 2013-01-28 13:40:32
+  it: 1.5
+  ot: 1.5
+  hot: 1.5
+  lot: 1.5
+  oh: 1.5
+  ih: 1.5
+  dp: 1.5
+  wc: 1.5
+  bp: 1.5
+  ws: 1.5
+  hws: 1.5
+  wd: 1.5
+  r: 1.5
+
+two:
+  recorded_datetime: 2013-01-28 13:40:32
+  it: 1.5
+  ot: 1.5
+  hot: 1.5
+  lot: 1.5
+  oh: 1.5
+  ih: 1.5
+  dp: 1.5
+  wc: 1.5
+  bp: 1.5
+  ws: 1.5
+  hws: 1.5
+  wd: 1.5
+  r: 1.5

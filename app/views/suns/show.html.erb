@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Rise:</b>
+  <%= @sun.rise %>
+</p>
+
+<p>
+  <b>Set:</b>
+  <%= @sun.set %>
+</p>
+
+
+<%= link_to 'Edit', edit_sun_path(@sun) %> |
+<%= link_to 'Back', suns_path %>

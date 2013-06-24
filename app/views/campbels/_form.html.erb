@@ -1,0 +1,77 @@
+<%= form_for(@campbel) do |f| %>
+  <% if @campbel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@campbel.errors.count, "error") %> prohibited this campbel from being saved:</h2>
+
+      <ul>
+      <% @campbel.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :timestamp %><br />
+    <%= f.datetime_select :timestamp %>
+  </div>
+  <div class="field">
+    <%= f.label :record_num %><br />
+    <%= f.number_field :record_num %>
+  </div>
+  <div class="field">
+    <%= f.label :air_temp_c_avg %><br />
+    <%= f.text_field :air_temp_c_avg %>
+  </div>
+  <div class="field">
+    <%= f.label :air_temp_c_max %><br />
+    <%= f.text_field :air_temp_c_max %>
+  </div>
+  <div class="field">
+    <%= f.label :air_temp_c_min %><br />
+    <%= f.text_field :air_temp_c_min %>
+  </div>
+  <div class="field">
+    <%= f.label :dew_point_c_max %><br />
+    <%= f.text_field :dew_point_c_max %>
+  </div>
+  <div class="field">
+    <%= f.label :dew_point_c_min %><br />
+    <%= f.text_field :dew_point_c_min %>
+  </div>
+  <div class="field">
+    <%= f.label :wind_chill_c_max %><br />
+    <%= f.text_field :wind_chill_c_max %>
+  </div>
+  <div class="field">
+    <%= f.label :wind_chill_c_min %><br />
+    <%= f.text_field :wind_chill_c_min %>
+  </div>
+  <div class="field">
+    <%= f.label :heat_index_c_max %><br />
+    <%= f.text_field :heat_index_c_max %>
+  </div>
+  <div class="field">
+    <%= f.label :heat_index_c_min %><br />
+    <%= f.text_field :heat_index_c_min %>
+  </div>
+  <div class="field">
+    <%= f.label :wind_speed_ms_max %><br />
+    <%= f.text_field :wind_speed_ms_max %>
+  </div>
+  <div class="field">
+    <%= f.label :wind_speed_avg %><br />
+    <%= f.text_field :wind_speed_avg %>
+  </div>
+  <div class="field">
+    <%= f.label :etrs_mm_total %><br />
+    <%= f.text_field :etrs_mm_total %>
+  </div>
+  <div class="field">
+    <%= f.label :rain_mm_total %><br />
+    <%= f.text_field :rain_mm_total %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  timestamp: 2013-01-28 13:39:49
+  record_num: 1
+  air_temp_c_avg: 1.5
+  air_temp_c_max: 1.5
+  air_temp_c_min: 1.5
+  dew_point_c_max: 1.5
+  dew_point_c_min: 1.5
+  wind_chill_c_max: 1.5
+  wind_chill_c_min: 1.5
+  heat_index_c_max: 1.5
+  heat_index_c_min: 1.5
+  wind_speed_ms_max: 1.5
+  wind_speed_avg: 1.5
+  etrs_mm_total: 1.5
+  rain_mm_total: 1.5
+
+two:
+  timestamp: 2013-01-28 13:39:49
+  record_num: 1
+  air_temp_c_avg: 1.5
+  air_temp_c_max: 1.5
+  air_temp_c_min: 1.5
+  dew_point_c_max: 1.5
+  dew_point_c_min: 1.5
+  wind_chill_c_max: 1.5
+  wind_chill_c_min: 1.5
+  heat_index_c_max: 1.5
+  heat_index_c_min: 1.5
+  wind_speed_ms_max: 1.5
+  wind_speed_avg: 1.5
+  etrs_mm_total: 1.5
+  rain_mm_total: 1.5

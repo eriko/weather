@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Start:</b>
+  <%= @daylight.start %>
+</p>
+
+<p>
+  <b>Stop:</b>
+  <%= @daylight.stop %>
+</p>
+
+
+<%= link_to 'Edit', edit_daylight_path(@daylight) %> |
+<%= link_to 'Back', daylights_path %>

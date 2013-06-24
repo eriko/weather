@@ -1,0 +1,53 @@
+
+<h1>Listing campbels</h1>
+
+<table class="table">
+  <tr>
+    <th>Timestamp</th>
+    <th>Record num</th>
+    <th>Air temp c avg</th>
+    <th>Air temp c max</th>
+    <th>Air temp c min</th>
+    <th>Dew point c max</th>
+    <th>Dew point c min</th>
+    <th>Wind chill c max</th>
+    <th>Wind chill c min</th>
+    <th>Heat index c max</th>
+    <th>Heat index c min</th>
+    <th>Wind speed ms max</th>
+    <th>Wind speed avg</th>
+    <th>Etrs mm total</th>
+    <th>Rain mm total</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @campbels.each do |campbel| %>
+  <tr>
+    <td><%= campbel.timestamp %></td>
+    <td><%= campbel.record_num %></td>
+    <td><%= campbel.air_temp_c_avg %></td>
+    <td><%= campbel.air_temp_c_max %></td>
+    <td><%= campbel.air_temp_c_min %></td>
+    <td><%= campbel.dew_point_c_max %></td>
+    <td><%= campbel.dew_point_c_min %></td>
+    <td><%= campbel.wind_chill_c_max %></td>
+    <td><%= campbel.wind_chill_c_min %></td>
+    <td><%= campbel.heat_index_c_max %></td>
+    <td><%= campbel.heat_index_c_min %></td>
+    <td><%= campbel.wind_speed_ms_max %></td>
+    <td><%= campbel.wind_speed_avg %></td>
+    <td><%= campbel.etrs_mm_total %></td>
+    <td><%= campbel.rain_mm_total %></td>
+    <td><%= link_to 'Show', campbel %></td>
+    <td><%= link_to 'Edit', edit_campbel_path(campbel) %></td>
+    <td><%= link_to 'Destroy', campbel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
+

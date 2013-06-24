@@ -1,0 +1,73 @@
+<%= form_for(@davi) do |f| %>
+  <% if @davi.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@davi.errors.count, "error") %> prohibited this davi from being saved:</h2>
+
+      <ul>
+      <% @davi.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :recorded_datetime %><br />
+    <%= f.datetime_select :recorded_datetime %>
+  </div>
+  <div class="field">
+    <%= f.label :it %><br />
+    <%= f.text_field :it %>
+  </div>
+  <div class="field">
+    <%= f.label :ot %><br />
+    <%= f.text_field :ot %>
+  </div>
+  <div class="field">
+    <%= f.label :hot %><br />
+    <%= f.text_field :hot %>
+  </div>
+  <div class="field">
+    <%= f.label :lot %><br />
+    <%= f.text_field :lot %>
+  </div>
+  <div class="field">
+    <%= f.label :oh %><br />
+    <%= f.text_field :oh %>
+  </div>
+  <div class="field">
+    <%= f.label :ih %><br />
+    <%= f.text_field :ih %>
+  </div>
+  <div class="field">
+    <%= f.label :dp %><br />
+    <%= f.text_field :dp %>
+  </div>
+  <div class="field">
+    <%= f.label :wc %><br />
+    <%= f.text_field :wc %>
+  </div>
+  <div class="field">
+    <%= f.label :bp %><br />
+    <%= f.text_field :bp %>
+  </div>
+  <div class="field">
+    <%= f.label :ws %><br />
+    <%= f.text_field :ws %>
+  </div>
+  <div class="field">
+    <%= f.label :hws %><br />
+    <%= f.text_field :hws %>
+  </div>
+  <div class="field">
+    <%= f.label :wd %><br />
+    <%= f.text_field :wd %>
+  </div>
+  <div class="field">
+    <%= f.label :r %><br />
+    <%= f.text_field :r %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
