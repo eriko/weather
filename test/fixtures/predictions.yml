@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  station_id: 1
+  date: 2013-06-26 17:37:25
+  level: 1
+  high: false
+  low: false
+
+two:
+  station_id: 1
+  date: 2013-06-26 17:37:25
+  level: 1
+  high: false
+  low: false

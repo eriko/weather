@@ -1,0 +1,3 @@
+<div id='<%= params[:graph_name] %>_graph'></div>
+<% @scale = 1 %>
+<%= render :partial => params[:graph_name] ,locals: {days: params[:days],graph_name: params[:graph_name]} %>

@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.datepicker
+//= require jquery.ui.all
 //= require_tree .
 //= require bootstrap
 //= require sparklines
+//= require d3

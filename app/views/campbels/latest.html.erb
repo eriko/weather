@@ -7,21 +7,42 @@
 </p>
 <p>Link to us on The WeatherUnderground <a href="http://www.wunderground.com/tation/WXDailyHistory.asp?ID=KWAOLYMP42">KWAOLYMP42</a>.
 </p>
-<p>Access data from the old, deactivated, weather station <%= link_to(:here , davis_path) %>.
+<p>Access data from the old, deactivated, weather station is available <%= link_to(:here, davis_path) %>.
 </p>
 
 <p>
   <% if @sunrise %>
-      <b>sunrise:</b>  <%= @sunrise.strftime("%Y-%m-%d %I:%M:%S %Z") %>  <b>sunset:</b>  <%= @sunset.strftime("%Y-%m-%d %I:%M:%S %Z") %>
-      <% if @dst %>
-          adjusted for DST
-      <% end %>
-  <% else %>
-      Out of data for sunrise/set please notify scientific_computing@evergreen.edu
-  <% end %>
+    <p>official <b>sunrise:</b>  <%= @sunrise.strftime("%Y-%m-%d %I:%M:%S %Z") %> </p>
+    <p>official <b>sunset:</b>  <%= @sunset.strftime("%Y-%m-%d %I:%M:%S %Z") %> </p>
+    <% if @dst %>
+        unadjusted for the currently in effect DST
+    <% end %>
+<% else %>
+    Out of data for sunrise/set please notify scientific_computing@evergreen.edu
+<% end %>
 
 </p>
 
+<% @tides.each do |station,tides| %>
+ <table class="table">
+   <tr>
+     <th colspan="3"><%= station.longname%></th>
+   </tr>
+   <tr>
+     <th>Time</th>
+     <th>Direction</th>
+     <th>Height (m)</th>
+   </tr>
+   <%tides.sort.each do |tide|%>
+    <tr>
+      <td><%= tide.date.httpdate %></td>
+      <td><%= tide.high ? "High" : "Low" %></td>
+      <td><%= tide.level.round(2) %></td>
+    </tr>
+   <% end %>
+ </table>
+
+<% end %>
 
 <hr size=1 noshade WIDTH="100%">
 
@@ -72,8 +93,8 @@
     <td align=right bgcolor="#FFFFFF"><B> Temperature </B></td>
     <td>  <%= sprintf("%.1f", @last_record.air_temp_c_avg) %> <%= @standard ? :F : :C %>
     </td>
-    <td><%#=link_to("24 hour graph",:action => "day_temp") %></td>
-    <td><%#=link_to("48 hour graph",:action => "two_day_temp") %></td>
+    <td><%= link_to("24 hour graph", graph_campbels_path(days: 1, graph_name: 'temp')) %></td>
+    <td><%= link_to("48 hour graph", graph_campbels_path(days: 2, graph_name: 'temp')) %></td>
 
   </tr>
 
@@ -157,6 +178,19 @@
       /Max <%= sprintf("%.2f", (@last_24.collect { |record| record.wind_speed_avg }).max) %>
     </td>
     <td>Min <%= (@last_24.collect { |record| record.rain_mm_total }).min %> /Max <%= (@last_24.collect { |record| record.rain_mm_total }).max %> </td>
+  </tr>
+
+
+  <tr>
+    <td>
+      <div id='temp_graph'></div>
+      <% @scale = 0.2 %>
+      <%= render :partial => 'temp',locals: {days: 1 , graph_name: :temp} %>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
   </tr>
 </table>
 
@@ -257,7 +291,7 @@
   </tr>
 </table>
 
-<table>
+<table class="table">
   <tr>
     <td colspan=5>
       <H3>24 Hour Summary </H3>
@@ -266,19 +300,19 @@
     <td></td>
   </tr>
 
-  <tr bgcolor="#FFFFFF">
+  <tr >
 
-    <td><B>Time<BR>PST (UTC) </B></td>
+    <th>Time<BR>PST (UTC)</th>
 
-    <td><B>Temperature Average<BR>
-      C </B></td>
+    <th>Temperature Average<BR>
+      C </th>
 
-    <td><B>Dew Point Max<BR>
-      C </B></td>
+    <th>Dew Point Max<BR>
+      C </th>
 
-    <td><B>Wind<BR>
-      km/h </B></td>
-
+    <th>Wind<BR>
+      km/h </th>
+     </tr>
     <% @last_24.each do |row| %>
       <tr>
         <td><%= row.timestamp.strftime("%I %p (%H) %b %d") %></td>
@@ -298,27 +332,21 @@
       </tr>
   <% end %>
 
-  <tr bgcolor="#FFFFFF">
+  <tr >
 
-    <td><B>Time<BR>PST (UTC) </B></td>
+    <th>Time<BR>PST (UTC)</th>
 
-    <td><B>Temperature Average<BR>
-      C </B></td>
+    <th>Temperature Average<BR>
+      C </th>
 
-    <td><B>Dew Point Max<BR>
-      C </B></td>
+    <th>Dew Point Max<BR>
+      C </th>
 
-    <td><B>Wind<BR>
-      km/h </B></td>
-
-
-  <tr>
-    <td colspan=7>
-      <hr size=1 noshade WIDTH="100%">
-    </td>
-
-    <td></td>
+    <th>Wind<BR>
+      km/h </th>
   </tr>
+
+
 </table>
 
 <p>
@@ -330,7 +358,7 @@
   Data Download (data will always be in metric units):
   <%= form_for Campbel.new, :format => 'csv', :method => 'get' do -%>
     <fieldset>
-      <%= text_field "campbel", "start_date", class: "datepicker"  %>
+      <%= text_field "campbel", "start_date", class: "datepicker" %>
       <%= text_field "campbel", "end_date", class: "datepicker" %>
       <%= submit_tag "Download CSV" %>
     </fieldset>

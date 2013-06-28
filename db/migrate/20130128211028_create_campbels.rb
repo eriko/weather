@@ -1,6 +1,6 @@
 class CreateCampbels < ActiveRecord::Migration
   def change
-    rename_table(:weathers, :campbels)
+    rename_table(:records, :campbels)
 
     #rename_table(:davises , :inter)
     #rename_table( :campbels,:davises)

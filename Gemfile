@@ -6,10 +6,12 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'  # , '0.11.0'
+gem 'savon'
 gem 'strong_parameters'
 gem  'chronic'
 #gem 'toadhopper'
 gem 'airbrake'
+gem 'whenever', :require => false
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -42,6 +44,8 @@ gem 'jquery-ui-rails'
 gem 'jquery-ui-themes'
 
 gem 'jquery-sparkline-rails', git: "https://github.com/RobAtHedtek/jquery-sparkline-rails.git"
+
+gem 'd3_rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

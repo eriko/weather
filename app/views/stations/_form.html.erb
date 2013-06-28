@@ -1,0 +1,17 @@
+<%= semantic_form_for @station do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :longname %>
+    <%= f.input :url %>
+    <%= f.input :description %>
+    <%= f.input :parent_id %>
+    <%= f.input :height_low %>
+    <%= f.input :height_high %>
+    <%= f.input :time_low %>
+    <%= f.input :time_high %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>

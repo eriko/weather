@@ -26,22 +26,41 @@ class CampbelsController < ApplicationController
     @last.each do |record|
       @last_6 << record
     end
-    sun = SolarEventCalculator.new(Time.now,47.073511,122.970878)
-    @sunrise = sun.compute_official_sunrise("America/Los_Angeles")
-    @sunset = sun.compute_official_sunset("America/Los_Angeles")
+    @sun = SolarEventCalculator.new(Date.new(Time.now.year,Time.now.month,Time.now.day),47.073511,-122.970878)
+    @sunrise = @sun.compute_utc_official_sunrise()
+    @sunset = @sun.compute_utc_official_sunset()
     #@sunrise = Sun.find(:first ,  :conditions => ["suns.rise >= ? and suns.set <= ?",DateTime.now(),DateTime.now()+1])
-    @dst = Daylight.dst?(@last_record.timestamp)
-    if @sunrise
-       if @dst
-         @sunrise = @sunrise + 1.hours
-         @sunrise = @sunrise + 1.hours
-       end
-     end
+    @dst = Daylight.dst?(Time.now)
+    @sunrise = @sunrise.new_offset(-8.0/24)
+    @sunset = @sunset.new_offset(-8.0/24)
+
+    @latest = Campbel.last
+
+    @tides = Hash.new
+    stations = Station.all
+    stations.each do |station|
+      @tides[station] = Prediction.where(date: (Time.now.midnight - 1.day)..Time.now.midnight , station_id: station)
+    end
 
 
     respond_to do |format|
       format.html # index.html.erb
+      format.xml #lastest.xml.erb
       format.json { render json: @campbels }
+    end
+  end
+
+  def graph
+    if params[:days]
+      @campbels = Campbel.last_x_hours(24*(params[:days].to_i),Campbel.last)
+    end
+    if @campbels.length > 0 && params[:graph_name]
+
+    end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @campbels }
+      format.csv { render text: @campbels.to_csv }
     end
   end
 

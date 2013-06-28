@@ -1,0 +1,115 @@
+<style>
+
+    body {
+        font: 10px sans-serif;
+    }
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+
+    .x.axis path {
+        display: none;
+        font-family: sans-serif;
+        font-size: <%= @scale ? @scale * 11 : 11%>px;
+    }
+
+    .area {
+        fill: steelblue;
+    }
+
+</style>
+
+<script type="text/javascript">
+
+
+    d3.json('<%= "#{graph_campbels_path(days: 2, graph_name: 'temp', format: :json)}"%>', function (error, json) {
+        if (error) return console.warn(error);
+        var data = json;
+        graph_it(data);
+    });
+    var scale = <%= @scale ? @scale : 1%>
+
+    function graph_it(data) {
+        var margin = {top: 20*scale, right: 20*scale, bottom: 30*scale, left: 50*scale};
+        var width = 960*scale - margin.left - margin.right;
+        var height = 500*scale - margin.top - margin.bottom;
+        var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%SZ").parse;
+        var x = d3.time.scale()
+                .range([0, width]);
+
+        var y = d3.scale.linear()
+                .range([height, 0]);
+
+        var xAxis = d3.svg.axis()
+                .scale(x)
+                .orient("bottom")
+                .tickFormat(d3.time.format("%m-%d %H:%M"));
+
+        var yAxis = d3.svg.axis()
+                .scale(y)
+                .orient("left");
+
+        var area = d3.svg.area()
+                .x(function (d) {
+                    return x(d.timestamp);
+                })
+                .y0(function (d) {
+                    return y(d.heat_index_c_max);
+                })
+                .y1(function (d) {
+                    return y(d.heat_index_c_min);
+                });
+
+
+        var svg = d3.select(<%= graph_name%>_graph).append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        data.forEach(function (d) {
+            d.timestamp = parseDate(d.timestamp);
+            d.heat_index_c_max = +d.heat_index_c_max;
+            d.heat_index_c_min = +d.heat_index_c_min;
+        });
+
+        x.domain(d3.extent(data, function (d) {
+            return d.timestamp;
+        }));
+
+        y.domain([d3.min(data, function (d) {
+            return d.heat_index_c_max;
+        }), d3.max(data, function (d) {
+            return d.heat_index_c_min;
+        })]);
+
+
+        svg.append("path")
+                .datum(data)
+                .attr("class", "area")
+                .attr("d", area);
+
+        svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis);
+
+        svg.append("g")
+                .attr("class", "y axis")
+                .call(yAxis)
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", ".71em")
+                .style("text-anchor", "end")
+                .text("return time(ms)");
+
+
+    }
+    ;
+
+</script>

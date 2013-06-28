@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @station.name %>
+</p>
+
+<p>
+  <b>Longname:</b>
+  <%= @station.longname %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @station.url %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @station.description %>
+</p>
+
+<p>
+  <b>Parent:</b>
+  <%= @station.parent_id %>
+</p>
+
+<p>
+  <b>Height low:</b>
+  <%= @station.height_low %>
+</p>
+
+<p>
+  <b>Height high:</b>
+  <%= @station.height_high %>
+</p>
+
+<p>
+  <b>Time low:</b>
+  <%= @station.time_low %>
+</p>
+
+<p>
+  <b>Time high:</b>
+  <%= @station.time_high %>
+</p>
+
+
+<%= link_to 'Edit', edit_station_path(@station) %> |
+<%= link_to 'Back', stations_path %>

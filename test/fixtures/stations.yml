@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  longname: MyString
+  url: MyString
+  description: MyText
+  parent_id: 1
+  height_low: 
+  height_high: 
+  time_low: 
+  time_high: 
+
+two:
+  name: MyString
+  longname: MyString
+  url: MyString
+  description: MyText
+  parent_id: 1
+  height_low: 
+  height_high: 
+  time_low: 
+  time_high: 

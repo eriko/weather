@@ -1,0 +1,13 @@
+<%= semantic_form_for @prediction do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :station_id %>
+    <%= f.input :date %>
+    <%= f.input :level %>
+    <%= f.input :high %>
+    <%= f.input :low %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>

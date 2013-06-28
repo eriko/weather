@@ -1,0 +1,8 @@
+<weather>
+	<temperature><%= (32+(9.0/5)* @latest.air_temp_c_avg).round%></temperature>
+	<humidity><%=@latest.rel_hum_avg.round%>%</humidity>
+	<wind>
+		<direction><%=compass(@latest.wind_dir_avg)%></direction>
+		<speed><%=(@latest.wind_speed_avg / 1.609344).round%></speed>
+	</wind>
+</weather>

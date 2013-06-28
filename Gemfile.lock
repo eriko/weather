@@ -48,6 +48,9 @@ GEM
       activesupport
       builder
       json
+    akami (1.2.0)
+      gyoku (>= 0.4.0)
+      nokogiri (>= 1.4.0)
     arel (3.0.2)
     bootstrap-sass (2.3.2.0)
       sass (~> 3.2)
@@ -65,17 +68,23 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
+    d3_rails (3.2.1)
+      railties (>= 3.1.0)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
     formtastic (2.2.1)
       actionpack (>= 3.0)
     fssm (0.2.10)
+    gyoku (1.0.0)
+      builder (>= 2.1.2)
     hashie (2.0.5)
     hike (1.2.3)
     httparty (0.11.0)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
+    httpi (2.0.2)
+      rack
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (3.0.1)
@@ -96,6 +105,7 @@ GEM
     multi_xml (0.5.4)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
+    nori (2.1.0)
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
@@ -135,6 +145,14 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    savon (2.2.0)
+      akami (~> 1.2.0)
+      builder (>= 2.1.2)
+      gyoku (~> 1.0.0)
+      httpi (~> 2.0.2)
+      nokogiri (>= 1.4.0)
+      nori (~> 2.1.0)
+      wasabi (~> 3.1.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -156,6 +174,12 @@ GEM
     uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    wasabi (3.1.0)
+      httpi (~> 2.0)
+      nokogiri (>= 1.4.0)
+    whenever (0.8.2)
+      activesupport (>= 2.3.4)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
@@ -166,6 +190,7 @@ DEPENDENCIES
   chronic
   coffee-rails (~> 3.2.1)
   compass
+  d3_rails
   formtastic
   formtastic-bootstrap!
   jquery-rails
@@ -177,6 +202,8 @@ DEPENDENCIES
   pg
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
+  savon
   strong_parameters
   turbo-sprockets-rails3
   uglifier (>= 1.0.3)
+  whenever

@@ -1,4 +1,10 @@
 Weather::Application.routes.draw do
+  resources :stations
+
+
+  resources :predictions
+
+
   resources :daylights
 
 
@@ -7,10 +13,14 @@ Weather::Application.routes.draw do
 
   resources :davis
 
+  #get 'campbels/graph/:days/:graph_name' , to: 'campbels#graph'
+  #match 'campbels/graph/:days/:graph_name' => 'campbels#graph'
+
 
   resources :campbels do
     collection do
       get 'latest'
+      get 'graph/:days/:graph_name'  , action: 'graph'  , as: 'graph'
       end
   end
 

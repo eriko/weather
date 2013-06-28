@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Station:</b>
+  <%= @prediction.station_id %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @prediction.date %>
+</p>
+
+<p>
+  <b>Level:</b>
+  <%= @prediction.level %>
+</p>
+
+<p>
+  <b>High:</b>
+  <%= @prediction.high %>
+</p>
+
+<p>
+  <b>Low:</b>
+  <%= @prediction.low %>
+</p>
+
+
+<%= link_to 'Edit', edit_prediction_path(@prediction) %> |
+<%= link_to 'Back', predictions_path %>
