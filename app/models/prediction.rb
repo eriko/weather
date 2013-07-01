@@ -9,7 +9,7 @@ class Prediction < ActiveRecord::Base
                beginDate: "#{year.to_s}1001 00:00",
                endDate: "#{(year+1).to_s}0930 23:59",
                datum: "MLLW",
-               unit: "0",
+               unit: "1",
                timeZone: "0"
     }
 
@@ -28,7 +28,7 @@ class Prediction < ActiveRecord::Base
             #puts new_time
             prediction = Prediction.where(station_id: station.id, date: new_time).first
             unless prediction
-              prediction = Prediction.new(station_id: station.id, date: new_time, level: (pred[:pred].to_i + height_adj), high: pred[:type].eql?("H"), low: pred[:type].eql?("L"))
+              prediction = Prediction.new(station_id: station.id, date: new_time, level: (pred[:pred].to_i + height_adj*0.3048), high: pred[:type].eql?("H"), low: pred[:type].eql?("L"))
               prediction.save
             end
           end
