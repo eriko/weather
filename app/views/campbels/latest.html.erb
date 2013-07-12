@@ -47,7 +47,7 @@
 <hr size=1 noshade WIDTH="100%">
 
 
-<table>
+<table class="table">
   <tr valign=top>
     <td align=right bgcolor="#FFFFFF"><B>Conditions at </B></td>
     <td><%= @last_record.timestamp.to_s %></td>
@@ -65,7 +65,7 @@
       with gusts of
       <%= sprintf("%.2f", @last_record.wind_speed_ms_max * 3.6) %> k/h
     </td>
-    <td></td>
+    <td><%= link_to("24 hour graph", graph_campbels_path(days: 1, graph_name: 'wind')) %></td>
     <td></td>
   </tr>
 
@@ -195,10 +195,9 @@
 </table>
 
 
-<hr size=1 noshade WIDTH="100%"></td>
 
 
-<table>
+<table class="table">
   <tr>
     <td colspan=3>
       <H3>Maximum and Minimum Temperatures</H3>
@@ -246,14 +245,10 @@
     <td>In the <B>24 hours</B> preceding <%= @last_record.timestamp.to_s %> </td>
   </tr>
 
-  <tr>
-    <td colspan=3>
-      <hr size=1 noshade WIDTH="100%">
-    </td>
-  </tr>
+
 </table>
 
-<table>
+<table class="table">
   <tr>
     <td colspan=2>
       <H3>Precipitation Accumulation</H3>
@@ -284,11 +279,7 @@
   </tr>
 
 
-  <tr>
-    <td colspan=2>
-      <hr size=1 noshade WIDTH="100%">
-    </td>
-  </tr>
+
 </table>
 
 <table class="table">

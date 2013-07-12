@@ -21,6 +21,7 @@ Weather::Application.routes.draw do
     collection do
       get 'latest'
       get 'graph/:days/:graph_name'  , action: 'graph'  , as: 'graph'
+      get 'graph/wind' , action: 'wind' , as: 'wind'
       end
   end
 

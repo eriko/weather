@@ -1,0 +1,52 @@
+<style type="text/css">
+    svg text { font: 14px sans-serif; text-anchor: middle }
+    svg .caption { font: 18px sans-serif; }
+    svg .axes { stroke: #aaa; stroke-width: 0.5px; fill: none; }
+    svg .labels text { letter-spacing: 1px; fill: #444; font-size: 12px; }
+    svg .arcs {  stroke: #000; stroke-width: 0.5px; }
+    svg .arctext text { font-size: 9px; }
+    svg #windrose .arctext { fill: #44d; }
+    svg #windspeed .arctext { fill: #933; }
+    svg .calmwind text {  font-size: 18px; }
+    svg text.calmcaption {  font-size: 12px; }
+    svg g.tickmarks&gt;text { font-size: 10px; fill: #888;}
+
+    .stationname { text-transform: capitalize }
+
+    html, body { margin: 0; padding: 0; border: 0; }
+    body {
+        width: 800px; margin: auto;
+        font-family: Corbel, Helvetica, sans-serif; font-size: 12pt;}
+    h1 { text-align: center }
+    a { text-decoration: none }
+    #about { width: 500px; padding-left: 150px; }
+    #copyright { font-size: 83%; text-align: center; }
+    #diagrams { padding-top: 40px; padding-bottom: 40px; }
+    #links { text-align: center; padding-bottom: 20px; }
+    #links span, #links a { padding-left: 8px; padding-right: 8px; }
+
+    #monthControl { font: 16px sans-serif; }
+    #monthControl g.month { cursor: pointer; }
+    #monthControl g.month&gt;path { fill: #ddd; stroke: black; stroke-width: 0.5px;}
+    #monthControl g.month&gt;path.selected { fill: white; }
+    #monthControl circle.center { fill: white; }
+    #monthControl g.month&gt;text { text-anchor: middle; fill: #666; }
+    #monthControl circle.backdrop { fill: #ccc; }
+</style>
+<script type="text/javascript" src="/assets/month-selector.js"></script>
+
+
+<div id="diagrams">
+  <span id="windrose" style="width: 400px; height: 420px;">
+
+</span>
+  <span id="windspeed" style="width: 400px; height: 420px;">
+
+  </span>
+</div>
+<div style="text-align: center; position: relative; top: -50px" id="monthControlDiv">
+
+</div>
+<script type="text/javascript">
+    makeWindVis();
+</script>

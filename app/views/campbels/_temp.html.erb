@@ -22,92 +22,116 @@
     }
 
 </style>
-
 <script type="text/javascript">
+    nv.addGraph(function () {
+        var chart = nv.models.lineChart();
+        //console.info(sinAndCos().toString());
+        chart.xAxis
+                .axisLabel('Time (ms)')
+                .tickFormat(d3.format(',r'));
 
+        chart.yAxis
+                .axisLabel('Voltage (v)')
+                .tickFormat(d3.format('.02f'));
 
-    d3.json('<%= "#{graph_campbels_path(days: 2, graph_name: 'temp', format: :json)}"%>', function (error, json) {
-        if (error) return console.warn(error);
-        var data = json;
-        graph_it(data);
-    });
-    var scale = <%= @scale ? @scale : 1%>
+        d3.select('#chart svg')
+                .datum(sinAndCos())
+                .transition().duration(500)
+                .call(chart);
 
-    function graph_it(data) {
-        var margin = {top: 20*scale, right: 20*scale, bottom: 30*scale, left: 50*scale};
-        var width = 960*scale - margin.left - margin.right;
-        var height = 500*scale - margin.top - margin.bottom;
-        var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%SZ").parse;
-        var x = d3.time.scale()
-                .range([0, width]);
-
-        var y = d3.scale.linear()
-                .range([height, 0]);
-
-        var xAxis = d3.svg.axis()
-                .scale(x)
-                .orient("bottom")
-                .tickFormat(d3.time.format("%m-%d %H:%M"));
-
-        var yAxis = d3.svg.axis()
-                .scale(y)
-                .orient("left");
-
-        var area = d3.svg.area()
-                .x(function (d) {
-                    return x(d.timestamp);
-                })
-                .y0(function (d) {
-                    return y(d.heat_index_c_max);
-                })
-                .y1(function (d) {
-                    return y(d.heat_index_c_min);
-                });
-
-
-        var svg = d3.select(<%= graph_name%>_graph).append("svg")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
-                .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-        data.forEach(function (d) {
-            d.timestamp = parseDate(d.timestamp);
-            d.heat_index_c_max = +d.heat_index_c_max;
-            d.heat_index_c_min = +d.heat_index_c_min;
+        nv.utils.windowResize(function () {
+            d3.select('#chart svg').call(chart)
         });
 
-        x.domain(d3.extent(data, function (d) {
-            return d.timestamp;
-        }));
-
-        y.domain([d3.min(data, function (d) {
-            return d.heat_index_c_max;
-        }), d3.max(data, function (d) {
-            return d.heat_index_c_min;
-        })]);
+        return chart;
+    });
 
 
-        svg.append("path")
-                .datum(data)
-                .attr("class", "area")
-                .attr("d", area);
+    /**************************************
+     * Simple test data generator
+     */
 
-        svg.append("g")
-                .attr("class", "x axis")
-                .attr("transform", "translate(0," + height + ")")
-                .call(xAxis);
 
-        svg.append("g")
-                .attr("class", "y axis")
-                .call(yAxis)
-                .append("text")
-                .attr("transform", "rotate(-90)")
-                .attr("y", 6)
-                .attr("dy", ".71em")
-                .style("text-anchor", "end")
-                .text("return time(ms)");
+    function sinAndCos() {
+        var sin = [],
+                cos = [];
 
+        for (var i = 0; i < 100; i++) {
+            sin.push({x: i, y: Math.sin(i / 10)});
+            cos.push({x: i, y: .5 * Math.cos(i / 10)});
+        }
+
+        return [
+            {
+                values: sin,
+                key: 'Sine Wave',
+                color: '#ff7f0e'
+            },
+            {
+                values: cos,
+                key: 'Cosine Wave',
+                color: '#2ca02c'
+            }
+        ];
+    }
+
+</script>
+
+<script type="text/javascript">
+    nv.addGraph(function () {
+        var chart = nv.models.lineChart();
+
+        chart.xAxis
+                .axisLabel('Time (hours)')
+                .tickFormat(d3.format(',r'));
+
+        chart.yAxis
+                .axisLabel('Temp (C)')
+                .tickFormat(d3.format('.02f'));
+
+        d3.select('#<%=graph_name%>_graph svg')
+                .datum(process_it())
+                .transition().duration(500)
+                .call(chart);
+
+        nv.utils.windowResize(function () {
+            d3.select('#<%=graph_name%>_graph svg').call(chart)
+        });
+
+        return chart;
+    });
+
+
+    function process_it() {
+        var json = '<%= @campbels.to_json.html_safe%>';
+        var data = JSON.parse(json);
+
+        var max = [], min = [] , avg = [];
+        var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%SZ").parse;
+
+        data.forEach(function (d) {
+            max.push({x: d.id, y: d.heat_index_c_max})
+            min.push({x: d.id, y: d.heat_index_c_min})
+            avg.push({x: d.id, y: d.heat_index_c_avg})
+        });
+
+        return [
+            {
+                values: max,
+                key: 'Max',
+                color: '#ff7f0e'
+            },
+            {
+                values: min,
+                key: 'Min',
+                color: '#2ca02c'
+            },
+            {
+                values: avg,
+                key: 'Avg',
+                color: '#dca02c'
+            }
+        ];
 
     }
     ;

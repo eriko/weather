@@ -1,3 +1,12 @@
-<div id='<%= params[:graph_name] %>_graph'></div>
+<div id='chart'>
+  <svg style="height:500px">
+  </svg>
+
+
+</div>
+<div id='<%= params[:graph_name] %>_graph'>
+  <svg style="height:500px">
+  </svg>
+</div>
 <% @scale = 1 %>
 <%= render :partial => params[:graph_name] ,locals: {days: params[:days],graph_name: params[:graph_name]} %>
