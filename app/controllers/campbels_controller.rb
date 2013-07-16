@@ -66,8 +66,8 @@ class CampbelsController < ApplicationController
   end
 
   def wind
-    #if params[:format].eql?('json')
-      @campbels = Campbel.all
+    if params[:format].eql?('json')
+      @campbels = Campbel.where(timestamp: (Time.now.midnight - 2.year)..Time.now.midnight)
       @records = Hash.new
       data = Hash.new
       @records["data"] = data
@@ -81,7 +81,6 @@ class CampbelsController < ApplicationController
         value.each { |rec| total+=rec }
         data[key]= [length, (total/length).round(1)]
       end
-    #end
 
       @records["info"] = [
           lat: 37.6169,
@@ -89,6 +88,8 @@ class CampbelsController < ApplicationController
           name: "The Evergreen State College",
           id: "KOLM"
       ]
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @records }

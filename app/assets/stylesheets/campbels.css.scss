@@ -1,3 +1,85 @@
 // Place all the styles related to the Campbels controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+svg text {
+  font: 14px sans-serif;
+  text-anchor: middle
+}
+
+svg .caption {
+  font: 18px sans-serif;
+}
+
+svg .axes {
+  stroke: #aaa;
+  stroke-width: 0.5px;
+  fill: none;
+}
+
+svg .labels text {
+  letter-spacing: 1px;
+  fill: #444;
+  font-size: 12px;
+}
+
+svg .arcs {
+  stroke: #000;
+  stroke-width: 0.5px;
+}
+
+svg .arctext text {
+  font-size: 9px;
+}
+
+svg #windrose .arctext {
+  fill: #44d;
+}
+
+svg #windspeed .arctext {
+  fill: #933;
+}
+
+svg .calmwind text {
+  font-size: 18px;
+}
+
+svg text.calmcaption {
+  font-size: 12px;
+}
+
+svg g.tickmarks>text {
+  font-size: 10px;
+  fill: #888;
+}
+
+#monthControl {
+  font: 16px sans-serif;
+}
+
+#monthControl g.month {
+  cursor: pointer;
+}
+
+#monthControl g.month>path {
+  fill: #ddd;
+  stroke: black;
+  stroke-width: 0.5px;
+}
+
+#monthControl g.month>path.selected {
+  fill: white;
+}
+
+#monthControl circle.center {
+  fill: white;
+}
+
+#monthControl g.month>text {
+  text-anchor: middle;
+  fill: #666;
+}
+
+#monthControl circle.backdrop {
+  fill: #ccc;
+}
