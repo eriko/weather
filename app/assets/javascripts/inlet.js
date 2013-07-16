@@ -244,10 +244,10 @@ function updateComplexArcs(parent, plotData, colorFunc, arcTextFunc, complexArcO
 }
 
 // Top level function to draw all station diagrams
-function makeWindVis() {
+function makeWindVis(data) {
     var url = "/campbels/graph/wind.json";
     var stationData = null;
-    d3.json(url, function(d) {
+    d3.json(data, function(d) {
         stationData = d;
         drawBigWindrose(d, "#windrose", "Frequency by Direction");
         drawBigWindrose(d, "#windspeed", "Average Speed by Direction");
