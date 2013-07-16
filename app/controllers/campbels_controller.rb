@@ -60,7 +60,7 @@ class CampbelsController < ApplicationController
     #@campbels  = Campbel.where("(timestamp >= '2013-06-22 15:00:00.000000' AND timestamp <= '2013-06-23 15:00:00.000000')").order("timestamp ASC")
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @campbels.to_json(:only => [:id, :air_temp_c_avg , :air_temp_c_max , :air_temp_c_min]) }
+      format.json { render json: @campbels.to_json(:only => [:id,:timestamp, :air_temp_c_avg , :air_temp_c_max , :air_temp_c_min]) }
       format.csv { render text: @campbels.to_csv }
     end
   end
