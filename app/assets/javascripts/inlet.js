@@ -509,7 +509,7 @@ function stations(url, callback) {
             .data(tiler.tile(tile.column, tile.row, tile.zoom))
             .enter()
             .append("svg:a")
-            .attr("xlink:href", function(d) { return "station.html?" + d.key })
+            .attr("xlink:href", function(d) { return "about.html.erb?" + d.key })
             .attr("target", "_blank")
             .append("svg:g")
             .attr("class", "station")

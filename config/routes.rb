@@ -20,6 +20,7 @@ Weather::Application.routes.draw do
   resources :campbels do
     collection do
       get 'latest'
+      get 'about'
       get 'graph/:days/:graph_name'  , action: 'graph'  , as: 'graph'
       get 'graph/wind' , action: 'wind' , as: 'wind'
       end

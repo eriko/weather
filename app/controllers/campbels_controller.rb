@@ -121,9 +121,15 @@ class CampbelsController < ApplicationController
       format.csv { render text: @campbels.to_csv }
     end
   end
+  def about
 
+    respond_to do |format|
+      format.html # about.html.erb
+    end
+  end
   # GET /campbels/1
   # GET /campbels/1.json
+
   def show
     @campbel = Campbel.find(params[:id])
 

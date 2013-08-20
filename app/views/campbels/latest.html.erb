@@ -1,6 +1,22 @@
-<p><H1><B>The Evergreen State College current weather conditions: </B></H1></p>
+<div class="row">
+    <div class="span3 bs-docs-sidebar">
+      <ul class="nav nav-list bs-docs-sidenav affix">
+      <li><a href="#current"><i class="icon-chevron-right"></i> Current Conditions</a></li>
+      <li><a href="#sunrise"><i class="icon-chevron-right"></i> Sunrise/Sunset</a></li>
+      <li><a href="#tides"><i class="icon-chevron-right"></i> Tides</a></li>
+      <li><a href="#wind"><i class="icon-chevron-right"></i> Wind</a></li>
+        <li><a href="#temps"><i class="icon-chevron-right"></i> Temperatures </a></li>
+        <li><a href="#precip"><i class="icon-chevron-right"></i> Precipitation</a></li>
+      <li><a href="#last24"><i class="icon-chevron-right"></i> Last 24 Hours</a></li>
+        <li><a href="#download"><i class="icon-chevron-right"></i> Download Data</a></li>
 
-<p><BR><b>Olympia, WA, United States 47-07-38N 122-97-08W 46M</B></p>
+
+    </ul>
+      </div>
+    <div class="span9">
+<h2>The Evergreen State College </h2>
+
+<p><strong>Olympia, WA, United States 47-07-38N 122-97-08W 46M</strong></p>
 <p>Information about our Campbell Scientific <%#=link_to "Weather Station" , "weather/station" %>.
 </p>
 <p>Information about <%#=link_to "Evapotranspiration" , "weather/evapotranspiration" %> and the reason we got the weather station.
@@ -10,10 +26,91 @@
 <p>Access data from the old, deactivated, weather station is available <%= link_to(:here, davis_path) %>.
 </p>
 
+<section id="current">
+<h2>Current weather conditions</h2>
+  <p><strong>Conditions at:</strong> <%= @last_record.timestamp.to_s %></p>
+
+  <table class="table">
+       <tr valign=top>
+      <td align=right bgcolor="#FFFFFF"><strong> Wind </strong></td>
+      <td> Wind from the :    <%= compass(@last_record.wind_dir_avg) %> (<%= @last_record.wind_dir_avg %>)at an average of
+        <%= sprintf("%.2f", @last_record.wind_speed_avg * 3.6) %> k/h
+
+        with gusts of
+        <%= sprintf("%.2f", @last_record.wind_speed_ms_max * 3.6) %> k/h
+      </td>
+      <td><%= link_to("24 hour graph", graph_campbels_path(days: 1, graph_name: 'wind')) %></td>
+      <td></td>
+    </tr>
+
+
+    <tr valign=top>
+      <td align=right bgcolor="#FFFFFF"><strong> Solar Radiation average </strong></td>
+      <td>  <%= @last_record.solar_rad_w_avg %>Wm2</td>
+      <td><%#=link_to("24 hour graph",:action => "day_solar") %></td>
+      <td><%#=link_to("48 hour graph",:action => "two_day_solar") %></td>
+
+    </tr>
+
+
+    <tr valign=top>
+      <td align=right bgcolor="#FFFFFF"><strong> Solar Radiation maximum </strong></td>
+      <td>  <%= @last_record.solar_rad_w_max %>Wm2
+      </td>
+      <td><%#=link_to("24 hour graph",:action => "day_solar_max") %></td>
+      <td><%#=link_to("48 hour graph",:action => "two_day_solar_max") %></td>
+
+    </tr>
+
+
+    <tr valign=top>
+      <td align=right bgcolor="#FFFFFF"><strong> Temperature </strong></td>
+      <td>  <%= sprintf("%.1f", @last_record.air_temp_c_avg) %> <%= @standard ? :F : :C %>
+      </td>
+      <td><%= link_to("24 hour graph", graph_campbels_path(days: 1, graph_name: 'temp')) %></td>
+      <td><%= link_to("48 hour graph", graph_campbels_path(days: 2, graph_name: 'temp')) %></td>
+
+    </tr>
+
+
+    <tr valign=top>
+      <td align=right bgcolor="#FFFFFF"><strong> Max Dew Point </strong></td>
+      <td>  <%= sprintf("%.1f", @last_record.dew_point_c_max) %> <%= @standard ? :F : :C %>
+      </td>
+      <td></td>
+      <td></td>
+
+    </tr>
+
+
+    <tr valign=top>
+      <td align=right bgcolor="#FFFFFF"><strong> Min Dew Point </strong></td>
+      <td>  <%= sprintf("%.1f", @last_record.dew_point_c_min) %> <%= @standard ? :F : :C %>
+      </td>
+      <td></td>
+      <td></td>
+
+    </tr>
+
+
+    <tr valign=top>
+      <td align=right bgcolor="#FFFFFF"><strong> Relative Humidity </strong></td>
+      <td>  <%= @last_record.rel_hum_avg %>%
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+
+</section>
+
+
+ <section id="sunrise">
+<h2>Sunrise / Sunset</h2>
 <p>
   <% if @sunrise %>
-    <p>official <b>sunrise:</b>  <%= @sunrise.strftime("%Y-%m-%d %I:%M:%S %Z") %> </p>
-    <p>official <b>sunset:</b>  <%= @sunset.strftime("%Y-%m-%d %I:%M:%S %Z") %> </p>
+    <p>official <strong>sunrise:</strong>  <%= @sunrise.strftime("%Y-%m-%d %I:%M:%S %Z") %> </p>
+    <p>official <strong>sunset:</strong>  <%= @sunset.strftime("%Y-%m-%d %I:%M:%S %Z") %> </p>
     <% if @dst %>
         unadjusted for the currently in effect DST
     <% end %>
@@ -22,9 +119,11 @@
 <% end %>
 
 </p>
-
+ </section>
+<section id="tides">
+<h2>Tides</h2>
 <% @tides.each do |station,tides| %>
- <table class="table">
+ <table class="table table-striped">
    <tr>
      <th colspan="3"><%= station.longname%></th>
    </tr>
@@ -43,178 +142,36 @@
  </table>
 
 <% end %>
+</section>
 
+<section id="wind">
+<h2>Wind Conditions</h2>
 
-
-<table class="table">
-  <tr valign=top>
-    <td align=right bgcolor="#FFFFFF"><B>Conditions at </B></td>
-    <td><%= @last_record.timestamp.to_s %></td>
-    <td></td>
-    <td></td>
-
-  </tr>
-  <tr valign="top">
-    <td colspan="4">
-      <%= render :partial => 'wind'  %>
-    </td>
-  </tr>
-
-  <tr valign=top>
-    <td align=right bgcolor="#FFFFFF"><B> Wind </B></td>
-    <td> Wind from the :    <%= compass(@last_record.wind_dir_avg) %> (<%= @last_record.wind_dir_avg %>)at an average of
-      <%= sprintf("%.2f", @last_record.wind_speed_avg * 3.6) %> k/h
-
+<div>
+  <p> Wind from the <strong><%= compass(@last_record.wind_dir_avg) %> (<%= @last_record.wind_dir_avg %>)</strong> at an average of
+      <strong><%= sprintf("%.2f", @last_record.wind_speed_avg * 3.6) %> k/h</strong>
       with gusts of
-      <%= sprintf("%.2f", @last_record.wind_speed_ms_max * 3.6) %> k/h
-    </td>
-    <td><%= link_to("24 hour graph", graph_campbels_path(days: 1, graph_name: 'wind')) %></td>
-    <td></td>
-  </tr>
+      <strong><%= sprintf("%.2f", @last_record.wind_speed_ms_max * 3.6) %> k/h</strong>
+      <br />
+    <%= link_to("24 hour graph", graph_campbels_path(days: 1, graph_name: 'wind')) %>
+  </p>
+     <div>
+      <%= render :partial => 'wind'  %>
+     </div>
+</div>
+</section>
 
-
-  <tr valign=top>
-    <td align=right bgcolor="#FFFFFF"><B> Solar Radiation average </B></td>
-    <td>  <%= @last_record.solar_rad_w_avg %>Wm2</td>
-    <td><%#=link_to("24 hour graph",:action => "day_solar") %></td>
-    <td><%#=link_to("48 hour graph",:action => "two_day_solar") %></td>
-
-  </tr>
-
-
-  <tr valign=top>
-    <td align=right bgcolor="#FFFFFF"><B> Solar Radiation maximum </B></td>
-    <td>  <%= @last_record.solar_rad_w_max %>Wm2
-    </td>
-    <td><%#=link_to("24 hour graph",:action => "day_solar_max") %></td>
-    <td><%#=link_to("48 hour graph",:action => "two_day_solar_max") %></td>
-
-  </tr>
-
-
-  <tr valign=top>
-    <td align=right bgcolor="#FFFFFF"><B> Temperature </B></td>
-    <td>  <%= sprintf("%.1f", @last_record.air_temp_c_avg) %> <%= @standard ? :F : :C %>
-    </td>
-    <td><%= link_to("24 hour graph", graph_campbels_path(days: 1, graph_name: 'temp')) %></td>
-    <td><%= link_to("48 hour graph", graph_campbels_path(days: 2, graph_name: 'temp')) %></td>
-
-  </tr>
-
-
-  <tr valign=top>
-    <td align=right bgcolor="#FFFFFF"><B> Max Dew Point </B></td>
-    <td>  <%= sprintf("%.1f", @last_record.dew_point_c_max) %> <%= @standard ? :F : :C %>
-    </td>
-    <td></td>
-    <td></td>
-
-  </tr>
-
-
-  <tr valign=top>
-    <td align=right bgcolor="#FFFFFF"><B> Min Dew Point </B></td>
-    <td>  <%= sprintf("%.1f", @last_record.dew_point_c_min) %> <%= @standard ? :F : :C %>
-    </td>
-    <td></td>
-    <td></td>
-
-  </tr>
-
-
-  <tr valign=top>
-    <td align=right bgcolor="#FFFFFF"><B> Relative Humidity </B></td>
-    <td>  <%= @last_record.rel_hum_avg %>%
-    </td>
-    <td></td>
-    <td></td>
-  </tr>
-</table>
-
-
-<style type="text/css">
-    td {
-        padding-right: 1.5cm
-    }
-</style>
-<table>
-  <tr align="center">
-    <th colspan=5>Last 24 hours</th>
-  </tr>
+<section id="temps">
+  <h2>Temperatures: Maximum and Minimum </h2>
+  <table class="table">
   <tr>
-    <td>Temperature (C)</td>
-    <td>Solar Rad (wm2 per hour)</td>
-    <td>Humidity percentage</td>
-    <td>Wind Speed k/h</td>
-    <td>Rainfall (mm per hour)</td>
-  </tr>
-
-  <tr>
-    <td>
-      <span class="inlinesparkline"><%= @last_24.collect { |record| record.air_temp_c_avg }.join(',') %></span>
-
-    </td>
-    <td><span class="inlinesparkline"><%= @last_24.collect { |record| record.solar_rad_w_avg }.join(',') %></span>
-
-    </td>
-    <td><span class="inlinesparkline"><%= @last_24.collect { |record| record.rel_hum_avg }.join(',') %></span>
-
-    </td>
-    <td>
-      <span class="inlinesparkline"><%= @last_24.collect { |record| @standard ? record.wind_speed_avg : record.wind_speed_avg * 3.6 }.join(',') %></span>
-
-    </td>
-    <td>
-      <span class="inlinesparkline"><%= @last_24.collect { |record| @standard ? record.rain_mm_total * 10 : record.rain_mm_total }.join(',') %></span>'
-    </td>
-
-  </tr>
-  <tr>
-    <td>Min <%= (@last_24.collect { |record| record.air_temp_c_min }).min %><%= @standard ? :F : :C %>/Max <%= (@last_24.collect { |record| record.air_temp_c_max }).max %>
-      F
-    </td>
-    <td>Max <%= (@last_24.collect { |record| record.solar_rad_w_max }).max %>wm2</td>
-    <td>Min <%= (@last_24.collect { |record| record.rel_hum_min }).min %>% /
-      Max <%= (@last_24.collect { |record| record.rel_hum_max }).max %>%
-    </td>
-    <td>Min <%= sprintf("%.2f", (@last_24.collect { |record| record.wind_speed_avg }).min) %>
-      /Max <%= sprintf("%.2f", (@last_24.collect { |record| record.wind_speed_avg }).max) %>
-    </td>
-    <td>Min <%= (@last_24.collect { |record| record.rain_mm_total }).min %> /Max <%= (@last_24.collect { |record| record.rain_mm_total }).max %> </td>
-  </tr>
-
-
-  <tr>
-    <td>
-      <div id='temp_graph'></div>
-      <% @scale = 0.2 %>
-      <%= render :partial => 'temp',locals: {days: 1 , graph_name: :temp} %>
-    </td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-</table>
-
-
-
-
-<table class="table">
-  <tr>
-    <td colspan=3>
-      <H3>Maximum and Minimum Temperatures</H3>
-    </td>
-  </tr>
-
-  <tr>
-    <td bgcolor="#FFFFFF"><B>Maximum<BR>
+    <td bgcolor="#FFFFFF"><strong>Maximum<BR>
       Temperature<BR>
-      C</B></td>
+      C</strong></td>
 
-    <td bgcolor="#FFFFFF"><B>Minimum<BR>
+    <td bgcolor="#FFFFFF"><strong>Minimum<BR>
       Temperature<BR>
-      C</B></td>
+      C</strong></td>
 
     <td></td>
   </tr>
@@ -231,7 +188,7 @@
             end %>
     </td>
 
-    <td>In the <B>6 hours</B> preceding <%= @last_record.timestamp.to_s %> </td>
+    <td>In the <strong>6 hours</strong> preceding <%= @last_record.timestamp.to_s %> </td>
   </tr>
 
   <tr>
@@ -245,22 +202,18 @@
             end %>
     </td>
 
-    <td>In the <B>24 hours</B> preceding <%= @last_record.timestamp.to_s %> </td>
+    <td>In the <strong>24 hours</strong> preceding <%= @last_record.timestamp.to_s %> </td>
   </tr>
-
 
 </table>
+</section>
 
+<section id="precip">
+  <h2>Precipitation Accumulation</h2>
 <table class="table">
   <tr>
-    <td colspan=2>
-      <H3>Precipitation Accumulation</H3>
-    </td>
-  </tr>
-
-  <tr>
-    <td bgcolor="#FFFFFF"><B>Precipitation<BR>
-      Amount (mm per hour)</B></td>
+    <td bgcolor="#FFFFFF"><strong>Precipitation<BR>
+      Amount (mm/hour)</strong></td>
 
     <td></td>
   </tr>
@@ -278,22 +231,75 @@
     </td>
 
 
-    <td>In the <B>24 hours</B> preceding <%= @last_record.timestamp.to_s %> </td>
+    <td>In the </strong>24 hours</strong> preceding <%= @last_record.timestamp.to_s %> </td>
   </tr>
-
-
 
 </table>
+</section>
 
-<table class="table">
-  <tr>
-    <td colspan=5>
-      <H3>24 Hour Summary </H3>
-    </td>
+<section id="last24">
+  <h2>Last 24 Hours</h2>
+  <table padding="5px">
+    <tr>
+      <td>Temperature (C)</td>
+      <td>Solar Rad (wm2/hour)</td>
+      <td>Humidity %</td>
+      <td>Wind Speed k/h</td>
+      <td>Rainfall (mm/hour)</td>
+    </tr>
 
-    <td></td>
-  </tr>
+    <tr>
+      <td>
+        <span class="inlinesparkline"><%= @last_24.collect { |record| record.air_temp_c_avg }.join(',') %></span>
 
+      </td>
+      <td><span class="inlinesparkline"><%= @last_24.collect { |record| record.solar_rad_w_avg }.join(',') %></span>
+
+      </td>
+      <td><span class="inlinesparkline"><%= @last_24.collect { |record| record.rel_hum_avg }.join(',') %></span>
+
+      </td>
+      <td>
+        <span class="inlinesparkline"><%= @last_24.collect { |record| @standard ? record.wind_speed_avg : record.wind_speed_avg * 3.6 }.join(',') %></span>
+
+      </td>
+      <td>
+        <span class="inlinesparkline"><%= @last_24.collect { |record| @standard ? record.rain_mm_total * 10 : record.rain_mm_total }.join(',') %></span>'
+      </td>
+
+    </tr>
+    <tr>
+      <td>Min <%= (@last_24.collect { |record| record.air_temp_c_min }).min %><%= @standard ? :F : :C %><br />
+        Max <%= (@last_24.collect { |record| record.air_temp_c_max }).max %>
+        F
+      </td>
+      <td>Max <%= (@last_24.collect { |record| record.solar_rad_w_max }).max %>wm2</td>
+      <td>Min <%= (@last_24.collect { |record| record.rel_hum_min }).min %>%<br />
+        Max <%= (@last_24.collect { |record| record.rel_hum_max }).max %>%
+      </td>
+      <td>Min <%= sprintf("%.2f", (@last_24.collect { |record| record.wind_speed_avg }).min) %>  <br />
+        Max <%= sprintf("%.2f", (@last_24.collect { |record| record.wind_speed_avg }).max) %>
+      </td>
+      <td>Min <%= (@last_24.collect { |record| record.rain_mm_total }).min %> <br />
+        Max <%= (@last_24.collect { |record| record.rain_mm_total }).max %> </td>
+    </tr>
+
+
+    <tr>
+      <td>
+        <div id='temp_graph'></div>
+        <% @scale = 0.2 %>
+        <%= render :partial => 'temp',locals: {days: 1 , graph_name: :temp} %>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+
+  <H4>24 Hour Summary </H4>
+<table class="table table-striped">
   <tr >
 
     <th>Time<BR>PST (UTC)</th>
@@ -342,14 +348,17 @@
 
 
 </table>
+</section>
 
-<p>
+<section id="download">
+  <h2>Download Data </h2>
+  <p>
   <% if flash[:notice] %>
     <p style="color: red"><%= flash[:notice] %></p>
 <% end %>
 </p>
 <p>
-  Data Download (data will always be in metric units):
+  (data will always be in metric units):
   <%= form_for Campbel.new, :format => 'csv', :method => 'get' do -%>
     <fieldset>
       <%= text_field "campbel", "start_date", class: "datepicker" %>
@@ -359,6 +368,10 @@
 <% end -%>
 
 </p>
+
+</section>
+    </div>
+</div>
 
 
 
