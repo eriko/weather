@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
+  revision: 6361f4ee208335780bfcbfb7d83d5134af96009f
+  branch: 3
+  specs:
+    bootstrap-sass (3.0.0.0)
+      sass (~> 3.2)
+
+GIT
   remote: git@github.com:adeven/nvd3-rails.git
   revision: c3041559c5ac06828d58596137aefc2a0935ac0a
   submodules: true
@@ -13,13 +21,6 @@ GIT
     jquery-sparkline-rails (2.0.0)
       jquery-rails
       rails (~> 3.2.2)
-
-GIT
-  remote: https://github.com/mjbellantoni/formtastic-bootstrap.git
-  revision: f86eaef93bea0a06879b3977d7554864964a623f
-  specs:
-    formtastic-bootstrap (2.1.3)
-      formtastic (~> 2.2)
 
 GEM
   remote: https://rubygems.org/
@@ -60,8 +61,6 @@ GEM
       gyoku (>= 0.4.0)
       nokogiri (>= 1.4.0)
     arel (3.0.2)
-    bootstrap-sass (2.3.2.0)
-      sass (~> 3.2)
     builder (3.0.4)
     chronic (0.9.1)
     chunky_png (1.2.8)
@@ -194,13 +193,12 @@ PLATFORMS
 
 DEPENDENCIES
   airbrake
-  bootstrap-sass
+  bootstrap-sass!
   chronic
   coffee-rails (~> 3.2.1)
   compass
   d3_rails
   formtastic
-  formtastic-bootstrap!
   jquery-rails
   jquery-sparkline-rails!
   jquery-ui-rails

@@ -26,7 +26,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'bootstrap-sass'#  , '= 2.0.4.1'
+gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
 gem 'compass'
 #gem 'twitter-bootstrap-rails' #, :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
 
@@ -35,7 +35,7 @@ gem 'omniauth-cas'
 
 
 gem 'formtastic'
-gem 'formtastic-bootstrap' , :git => 'https://github.com/mjbellantoni/formtastic-bootstrap.git'#, :branch => 'bootstrap2-rails3-2-formtastic-2-2'
+#gem 'formtastic-bootstrap' , :git => 'https://github.com/mjbellantoni/formtastic-bootstrap.git'#, :branch => 'bootstrap2-rails3-2-formtastic-2-2'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
