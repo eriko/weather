@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
-//= require bootstrap
 //= require sparklines
+//= require bootstrap
 //= require d3
 //= require nvd3-rails
 //= require nvd3/lib/d3.v2

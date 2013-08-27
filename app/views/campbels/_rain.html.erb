@@ -32,8 +32,8 @@
                 });
 
 
-        chart.yAxis
-                .tickFormat(d3.format('.01f'));
+        //chart.yAxis
+        //        .tickFormat(d3.format('.01f'));
 
 
 
@@ -54,30 +54,18 @@
         var json = '<%= @campbels.to_json.html_safe%>';
         var data = JSON.parse(json);
 
-        var max = [], min = [] , avg = [];
+        var rain = [];
         var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%SZ").parse;
 
         data.forEach(function (d) {
-            max.push({x: parseDate(d.timestamp), y: d.air_temp_c_max})
-            min.push({x: parseDate(d.timestamp), y: d.air_temp_c_min})
-            avg.push({x: parseDate(d.timestamp), y: d.air_temp_c_avg})
+            rain.push({x: parseDate(d.timestamp), y: d.rain_mm_total})
         });
 
         return [
             {
-                values: max,
-                key: 'Max',
+                values: rain,
+                key: 'Rain (mm)',
                 color: '#ff7f0e'
-            },
-            {
-                values: min,
-                key: 'Min',
-                color: '#2ca02c'
-            },
-            {
-                values: avg,
-                key: 'Avg',
-                color: '#dca02c'
             }
         ];
 

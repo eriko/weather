@@ -1,0 +1,96 @@
+<section id="current">
+  <h2>Current weather conditions (over the last 24 hours)</h2>
+  <p><strong>Conditions at:</strong> <%= @last_record.timestamp.to_s %></p>
+
+  <table class="table">
+    <tr valign=top>
+      <td align=left bgcolor="#FFFFFF"><strong> Wind </strong></td>
+      <td colspan="2"> Wind from the :    <%= compass(@last_record.wind_dir_avg) %> (<%= @last_record.wind_dir_avg %>)at an average of
+        <%= sprintf("%.2f", @last_record.wind_speed_avg * 3.6) %> k/h
+
+        with gusts of
+        <%= sprintf("%.2f", @last_record.wind_speed_ms_max * 3.6) %> k/h
+      </td>
+      <td><%= link_to("Wind History", graph_campbels_path(days: 1, graph_name: 'wind')) %></td>
+      <td></td>
+    </tr>
+
+<tr valign=top>
+      <td align=left bgcolor="#FFFFFF"><strong> Rain </strong></td>
+      <td colspan="2"> There has been <%= @last_24.collect { |record| record.rain_mm_total }.inject(:+) %>mm of rain in the last 24 hours
+        <span class="inlinesparkline"><%= @last_24.collect { |record| @standard ? record.rain_mm_total * 10 : record.rain_mm_total }.join(',') %></span>'
+
+      </td>
+  <td><%= link_to("24 hour graph", graph_campbels_path(days: 1, graph_name: 'rain')) %></td>
+  <td><%= link_to("48 hour graph", graph_campbels_path(days: 2, graph_name: 'rain')) %></td>
+    </tr>
+
+
+    <tr valign=top>
+      <td align=left bgcolor="#FFFFFF"><strong> Solar Radiation max/avg </strong></td>
+      <td>  <%= @last_record.solar_rad_w_max %>Wm2
+        <span class="inlinesparkline"><%= @last_24.collect { |record| record.solar_rad_w_max }.join(',') %></span>
+      </td>
+      <td>  <%= @last_record.solar_rad_w_avg %>Wm2
+        <span class="inlinesparkline"><%= @last_24.collect { |record| record.solar_rad_w_avg }.join(',') %></span>
+
+
+ </td>
+      <td><%= link_to("24 hour graph", graph_campbels_path(days: 1, graph_name: 'solar')) %></td>
+      <td><%= link_to("48 hour graph", graph_campbels_path(days: 2, graph_name: 'solar')) %></td>
+
+    </tr>
+
+
+
+
+
+    <tr valign=top>
+      <td align=left bgcolor="#FFFFFF"><strong> Temperature max/avg</strong></td>
+      <td>  <%= sprintf("%.1f", @last_record.air_temp_c_max) %> <%= @standard ? :F : :C %>
+        <span class="inlinesparkline"><%= @last_24.collect { |record| record.air_temp_c_max }.join(',') %></span>
+      </td>
+      <td>  <%= sprintf("%.1f", @last_record.air_temp_c_min) %> <%= @standard ? :F : :C %>
+        <span class="inlinesparkline"><%= @last_24.collect { |record| record.air_temp_c_min }.join(',') %></span>
+      </td>
+      <td><%= link_to("24 hour graph", graph_campbels_path(days: 1, graph_name: 'temp')) %></td>
+      <td><%= link_to("48 hour graph", graph_campbels_path(days: 2, graph_name: 'temp')) %></td>
+
+    </tr>
+
+
+    <tr valign=top>
+      <td align=left bgcolor="#FFFFFF"><strong> Dew Point max/min</strong></td>
+      <td>  <%= sprintf("%.1f", @last_record.dew_point_c_max) %> <%= @standard ? :F : :C %>
+
+        <span class="inlinesparkline"><%= @last_24.collect { |record| record.dew_point_c_max }.join(',') %></span>
+      </td>
+      <td>  <%= sprintf("%.1f", @last_record.dew_point_c_min) %> <%= @standard ? :F : :C %>
+
+        <span class="inlinesparkline"><%= @last_24.collect { |record| record.dew_point_c_min }.join(',') %></span>
+      </td>
+      <td><%= link_to("24 hour graph", graph_campbels_path(days: 1, graph_name: 'dew')) %></td>
+      <td><%= link_to("48 hour graph", graph_campbels_path(days: 2, graph_name: 'dew')) %></td>
+
+
+    </tr>
+ <tr valign=top>
+      <td align=left bgcolor="#FFFFFF"><strong> Relative Humidity max/min</strong></td>
+      <td>  <%= sprintf("%.1f", @last_record.rel_hum_max) %> <%= @standard ? :F : :C %>
+
+        <span class="inlinesparkline"><%= @last_24.collect { |record| record.rel_hum_max }.join(',') %></span>
+      </td>
+      <td>  <%= sprintf("%.1f", @last_record.rel_hum_min) %> <%= @standard ? :F : :C %>
+
+        <span class="inlinesparkline"><%= @last_24.collect { |record| record.rel_hum_min }.join(',') %></span>
+      </td>
+      <td><%= link_to("24 hour graph", graph_campbels_path(days: 1, graph_name: 'humidity')) %></td>
+      <td><%= link_to("48 hour graph", graph_campbels_path(days: 2, graph_name: 'humidity')) %></td>
+
+
+    </tr>
+
+  </table>
+
+
+</section>

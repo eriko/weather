@@ -3,3 +3,8 @@
 
 en:
   hello: "Hello world"
+  temp: "Temperature in (C)"
+  solar: "Solar Radiation in Wm2"
+  dew: "Dew Point in (C)"
+  rain: "Rain in (mm)"
+  humidity: "Percent Relative Humidity"

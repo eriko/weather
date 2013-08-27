@@ -16,20 +16,7 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
-  <script type="text/javascript">
-      $(function() {
-          /** This code runs when everything has been loaded on the page */
-          /* Inline sparklines take their values from the contents of the tag */
-          $('.inlinesparkline').sparkline();
 
-          /* Use 'html' instead of an array of values to pass options
-           to a sparkline with data in the tag */
-          $('.inlinebar').sparkline('html', {type: 'bar', barColor: 'red'} );
-
-          /*activate datapickers*/
-          $(function(){ $( ".datepicker" ).datepicker();});
-      });
-  </script>
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -46,10 +33,7 @@
 </head>
 
 <body>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="//code.jquery.com/jquery.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+
 <a href="#content" class="sr-only">Skip to content</a>
 <header class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">

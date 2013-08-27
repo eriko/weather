@@ -1,12 +1,10 @@
-<div id='chart'>
+<h4><%= t(params[:graph_name]) %> for <%= params[:days] %> day<%= params[:days].to_i > 1 ? "s" : ""%></h4>
+<div class="row">
+
+<div id='<%= params[:graph_name] %>_graph' class="col-md-12">
   <svg style="height:500px">
   </svg>
-
-
 </div>
-<div id='<%= params[:graph_name] %>_graph'>
-  <svg style="height:500px">
-  </svg>
 </div>
 <% @scale = 1 %>
 <%= render :partial => params[:graph_name] ,locals: {days: params[:days],graph_name: params[:graph_name]} %>

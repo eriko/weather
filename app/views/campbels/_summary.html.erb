@@ -1,0 +1,68 @@
+<section id="summary">
+
+  <H4>24 Hour Summary </H4>
+  <table class="table table-striped">
+    <tr >
+
+      <th>Time<BR>PST (UTC)</th>
+
+      <th>Temperature Average<BR>
+        C </th>
+
+      <th>Dew Point Max<BR>
+        C </th>
+
+      <th>Wind<BR>
+        km/h </th>
+    </tr>
+    <% @last_24.each do |row| %>
+        <tr>
+          <td><%= row.timestamp.strftime("%I %p (%H) %b %d") %></td>
+
+          <td><%= sprintf("%.1f", row.air_temp_c_avg) %></td>
+
+          <td><%= sprintf("%.1f", row.dew_point_c_max) %></td>
+
+          <td><%= compass(row.wind_dir_avg) %>
+            <% unless @standard %>
+                <%= sprintf("%.2f", row.wind_speed_avg * 3.6) %> k/h
+            <% else %>
+                <%= sprintf("%.2f", row.wind_speed_avg) %>m/h
+            <% end %> </td>
+
+          <td></td>
+        </tr>
+    <% end %>
+
+    <tr >
+
+      <th>Time<BR>PST (UTC)</th>
+
+      <th>Temperature Average<BR>
+        C </th>
+
+      <th>Dew Point Max<BR>
+        C </th>
+
+      <th>Wind<BR>
+        km/h </th>
+    </tr>
+
+
+  </table>
+  <script type="text/javascript">
+      $(function() {
+          /** This code runs when everything has been loaded on the page */
+          /* Inline sparklines take their values from the contents of the tag */
+          $('.inlinesparkline').sparkline();
+
+          /* Use 'html' instead of an array of values to pass options
+           to a sparkline with data in the tag */
+          $('.inlinebar').sparkline('html', {type: 'bar', barColor: 'red'} );
+
+          /*activate datapickers*/
+          $(function(){ $( ".datepicker" ).datepicker();});
+      });
+  </script>
+
+</section>

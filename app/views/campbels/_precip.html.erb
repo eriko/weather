@@ -1,0 +1,28 @@
+<section id="precip">
+  <h2>Precipitation Accumulation</h2>
+  <table class="table">
+    <tr>
+      <td bgcolor="#FFFFFF"><strong>Precipitation<BR>
+        Amount (mm/hour)</strong></td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>
+        <% sum = 0
+           (@last_24.collect { |record| record.rain_mm_total }).each do |rain|
+             if rain
+               sum += rain
+             end
+           end
+        %>
+        <%= sum %>
+      </td>
+
+
+      <td>In the </strong>24 hours</strong> preceding <%= @last_record.timestamp.to_s %> </td>
+    </tr>
+
+  </table>
+</section>

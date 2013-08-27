@@ -58,9 +58,8 @@
         var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%SZ").parse;
 
         data.forEach(function (d) {
-            max.push({x: parseDate(d.timestamp), y: d.air_temp_c_max})
-            min.push({x: parseDate(d.timestamp), y: d.air_temp_c_min})
-            avg.push({x: parseDate(d.timestamp), y: d.air_temp_c_avg})
+            max.push({x: parseDate(d.timestamp), y: d.solar_rad_w_max})
+            avg.push({x: parseDate(d.timestamp), y: d.solar_rad_w_avg})
         });
 
         return [
@@ -68,11 +67,6 @@
                 values: max,
                 key: 'Max',
                 color: '#ff7f0e'
-            },
-            {
-                values: min,
-                key: 'Min',
-                color: '#2ca02c'
             },
             {
                 values: avg,

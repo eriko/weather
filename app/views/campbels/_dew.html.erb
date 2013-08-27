@@ -58,9 +58,9 @@
         var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%SZ").parse;
 
         data.forEach(function (d) {
-            max.push({x: parseDate(d.timestamp), y: d.air_temp_c_max})
-            min.push({x: parseDate(d.timestamp), y: d.air_temp_c_min})
-            avg.push({x: parseDate(d.timestamp), y: d.air_temp_c_avg})
+            max.push({x: parseDate(d.timestamp), y: d.dew_point_c_max})
+            avg.push({x: parseDate(d.timestamp), y: d.dew_point_c_avg})
+            min.push({x: parseDate(d.timestamp), y: d.dew_point_c_min})
         });
 
         return [

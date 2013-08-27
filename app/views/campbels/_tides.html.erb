@@ -1,0 +1,25 @@
+<section id="tides">
+  <h2>Tides</h2>
+  <h6>Tide data aquired from<a href="http://tidesandcurrents.noaa.gov/index.shtml">NOAA's </a>Center for Operational Oceanographic Products and Services</h6>
+  <% @tides.each do |station,tides| %>
+      <table class="table table-striped">
+        <tr>
+          <th colspan="3"><%= station.longname%></th>
+        </tr>
+        <tr>
+          <th>Time</th>
+          <th>Direction</th>
+          <th>Height (m)</th>
+        </tr>
+        <%tides.sort.each do |tide|%>
+            <tr>
+              <td><%= tide.date.httpdate %></td>
+              <td><%= tide.high ? "High" : "Low" %></td>
+              <td><%= tide.level.round(2) %></td>
+            </tr>
+        <% end %>
+      </table>
+
+  <% end %>
+  <h6>The data is updated several times a years from NOAA's site.  For the most current and accurate data please go to <a href="http://tidesandcurrents.noaa.gov/index.shtml">Find a NOS Station</a> </h6>
+</section>

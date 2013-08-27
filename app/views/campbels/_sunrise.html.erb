@@ -1,0 +1,17 @@
+<section id="sunrise">
+  <h2>Sunrise / Sunset</h2>
+  <h6>Calculated with code from <a href="https://github.com/mikereedell/sunrisesunset-ruby">Mike Reedell</a></h6>
+  <p>
+    <% if @sunrise %>
+      <p>official <strong>sunrise:</strong>  <%= @sunrise.strftime("%Y-%m-%d %I:%M:%S %Z") %> </p>
+      <p>official <strong>sunset:</strong>  <%= @sunset.strftime("%Y-%m-%d %I:%M:%S %Z") %> </p>
+      <% if @dst %>
+          unadjusted for the currently in effect DST
+      <% end %>
+  <% else %>
+      Out of data for sunrise/set please notify scientific_computing@evergreen.edu
+  <% end %>
+
+  </p>
+
+</section>

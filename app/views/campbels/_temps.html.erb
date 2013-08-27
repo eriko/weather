@@ -1,0 +1,46 @@
+<section id="temps">
+  <h2>Temperatures: Maximum and Minimum </h2>
+  <table class="table">
+    <tr>
+      <td bgcolor="#FFFFFF"><strong>Maximum<BR>
+        Temperature<BR>
+        C</strong></td>
+
+      <td bgcolor="#FFFFFF"><strong>Minimum<BR>
+        Temperature<BR>
+        C</strong></td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>
+        <%= unless @last_6.empty?
+              sprintf("%.1f", (@last_6.collect { |record| record.air_temp_c_max }).max)
+            end %>
+      </td>
+
+      <td><%= unless @last_6.empty?
+                sprintf("%.1f", (@last_6.collect { |record| record.air_temp_c_min }).max)
+              end %>
+      </td>
+
+      <td>In the <strong>6 hours</strong> preceding <%= @last_record.timestamp.to_s %> </td>
+    </tr>
+
+    <tr>
+      <td> <%= unless @last_24.empty?
+                 sprintf("%.1f", (@last_24.collect { |record| record.air_temp_c_max }).max)
+               end %>
+      </td>
+
+      <td><%= unless @last_24.empty?
+                sprintf("%.1f", (@last_24.collect { |record| record.air_temp_c_min }).max)
+              end %>
+      </td>
+
+      <td>In the <strong>24 hours</strong> preceding <%= @last_record.timestamp.to_s %> </td>
+    </tr>
+
+  </table>
+</section>
