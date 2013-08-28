@@ -22,6 +22,14 @@ GIT
       jquery-rails
       rails (~> 3.2.2)
 
+GIT
+  remote: https://github.com/nickl-/formtastic-bootstrap3.git
+  revision: 0c86c329da7d97ef11bf9cc58ef2cd8d3bc30ec2
+  branch: bootstrap3
+  specs:
+    formtastic-bootstrap (2.1.3)
+      formtastic (~> 2.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -199,6 +207,7 @@ DEPENDENCIES
   compass
   d3_rails
   formtastic
+  formtastic-bootstrap!
   jquery-rails
   jquery-sparkline-rails!
   jquery-ui-rails
