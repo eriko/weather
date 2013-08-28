@@ -35,6 +35,8 @@ gem 'omniauth-cas'
 
 
 gem 'formtastic'
+gem 'formtastic-bootstrap'  , git: 'https://github.com/nickl-/formtastic-bootstrap3.git' , branch: 'bootstrap3'
+
 #gem 'formtastic-bootstrap' , :git => 'https://github.com/mjbellantoni/formtastic-bootstrap.git'#, :branch => 'bootstrap2-rails3-2-formtastic-2-2'
 
 gem 'jquery-rails'
