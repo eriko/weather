@@ -1,17 +1,19 @@
 Weather::Application.routes.draw do
-  resources :stations
 
 
-  resources :predictions
+  #resources :stations
 
 
-  resources :daylights
+  #resources :predictions
 
 
-  resources :suns
+  #resources :daylights
 
 
-  resources :davis
+  #resources :suns
+
+
+  resources :davises
 
   #get 'campbels/graph/:days/:graph_name' , to: 'campbels#graph'
   #match 'campbels/graph/:days/:graph_name' => 'campbels#graph'

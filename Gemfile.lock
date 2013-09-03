@@ -60,7 +60,6 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
-    addressable (2.3.4)
     airbrake (3.1.12)
       activesupport
       builder
@@ -93,7 +92,6 @@ GEM
     fssm (0.2.10)
     gyoku (1.0.0)
       builder (>= 2.1.2)
-    hashie (2.0.5)
     hike (1.2.3)
     httparty (0.11.0)
       multi_json (~> 1.0)
@@ -121,13 +119,6 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     nori (2.1.0)
-    omniauth (1.1.4)
-      hashie (>= 1.2, < 3)
-      rack
-    omniauth-cas (1.0.2)
-      addressable (~> 2.3)
-      nokogiri (~> 1.5)
-      omniauth (~> 1.1.0)
     pg (0.15.1)
     polyglot (0.3.3)
     rack (1.4.5)
@@ -213,8 +204,6 @@ DEPENDENCIES
   jquery-ui-rails
   jquery-ui-themes
   nvd3-rails!
-  omniauth
-  omniauth-cas
   pg
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)

@@ -30,9 +30,13 @@ gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.g
 gem 'compass'
 #gem 'twitter-bootstrap-rails' #, :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
 
-gem 'omniauth'
-gem 'omniauth-cas'
-
+#gem 'devise'
+#gem = 'devise_cas_authenticatable'
+#gem 'omniauth'
+#gem 'rubycas-client'
+#gem 'rubycas-client-rails'
+#gem 'omniauth-cas'
+#gem 'authority'
 
 gem 'formtastic'
 gem 'formtastic-bootstrap'  , git: 'https://github.com/nickl-/formtastic-bootstrap3.git' , branch: 'bootstrap3'

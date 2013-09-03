@@ -1,10 +1,10 @@
-<%= form_for(@davi) do |f| %>
-  <% if @davi.errors.any? %>
+<%= form_for(@davis) do |f| %>
+  <% if @davis.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@davi.errors.count, "error") %> prohibited this davi from being saved:</h2>
+      <h2><%= pluralize(@davis.errors.count, "error") %> prohibited this davis from being saved:</h2>
 
       <ul>
-      <% @davi.errors.full_messages.each do |msg| %>
+      <% @davis.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>

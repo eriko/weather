@@ -1,4 +1,4 @@
-class Davi < ActiveRecord::Base
+class Davis < ActiveRecord::Base
   attr_accessible :bp, :dp, :hot, :hws, :ih, :it, :lot, :oh, :ot, :r, :recorded_datetime, :wc, :wd, :ws
   def self.to_csv
     CSV.generate do |csv|

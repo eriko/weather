@@ -1,0 +1,65 @@
+<h1>Listing davis</h1>
+
+
+<p>
+  Data Download (data will always be in metric units):
+  <%= semantic_form_for Davis.new, :format => 'csv', :method => 'get' do -%>
+    <fieldset>
+      <%= text_field "davis", "start_date", class: "datepicker"  %>
+      <%= text_field "davis", "end_date", class: "datepicker" %>
+      <%= submit_tag "Download CSV" %>
+    </fieldset>
+<% end -%>
+
+
+
+</p>
+
+
+<p>The first record is from <%= @first.recorded_datetime.strftime("%m-%d-%Y")%> and the last record is from <%= @last.recorded_datetime.strftime("%m-%d-%Y")%></p>
+<table class="table">
+  <tr>
+    <th>Recorded datetime</th>
+    <th>It</th>
+    <th>Ot</th>
+    <th>Hot</th>
+    <th>Lot</th>
+    <th>Oh</th>
+    <th>Ih</th>
+    <th>Dp</th>
+    <th>Wc</th>
+    <th>Bp</th>
+    <th>Ws</th>
+    <th>Hws</th>
+    <th>Wd</th>
+    <th>R</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @davises.each do |davis| %>
+  <tr>
+    <td><%= davis.recorded_datetime %></td>
+    <td><%= davis.it %></td>
+    <td><%= davis.ot %></td>
+    <td><%= davis.hot %></td>
+    <td><%= davis.lot %></td>
+    <td><%= davis.oh %></td>
+    <td><%= davis.ih %></td>
+    <td><%= davis.dp %></td>
+    <td><%= davis.wc %></td>
+    <td><%= davis.bp %></td>
+    <td><%= davis.ws %></td>
+    <td><%= davis.hws %></td>
+    <td><%= davis.wd %></td>
+    <td><%= davis.r %></td>
+    <td><%= link_to 'Show', davis %></td>
+    <td><%= link_to 'Edit', edit_davis_path(davis) %></td>
+    <td><%= link_to 'Destroy', davis, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
