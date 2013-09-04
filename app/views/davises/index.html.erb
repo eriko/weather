@@ -3,7 +3,7 @@
 
 <p>
   Data Download (data will always be in metric units):
-  <%= semantic_form_for Davis.new, :format => 'csv', :method => 'get' do -%>
+  <%= form_for Davis.new, :format => 'csv', :method => 'get' do -%>
     <fieldset>
       <%= text_field "davis", "start_date", class: "datepicker"  %>
       <%= text_field "davis", "end_date", class: "datepicker" %>

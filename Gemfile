@@ -13,6 +13,16 @@ gem  'chronic'
 gem 'airbrake'
 gem 'whenever', :require => false
 
+gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
+gem 'compass'
+gem 'formtastic'
+gem 'formtastic-bootstrap'  , git: 'https://github.com/nickl-/formtastic-bootstrap3.git' , branch: 'bootstrap3'
+
+
+gem 'jquery-rails'
+gem 'jquery-ui-sass-rails'
+gem 'jquery-ui-rails'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -28,33 +38,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
-gem 'compass'
-#gem 'twitter-bootstrap-rails' #, :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
-
-#gem 'devise'
-#gem = 'devise_cas_authenticatable'
-#gem 'omniauth'
-#gem 'rubycas-client'
-#gem 'rubycas-client-rails'
-#gem 'omniauth-cas'
-#gem 'authority'
-
-gem 'formtastic'
-gem 'formtastic-bootstrap'  , git: 'https://github.com/nickl-/formtastic-bootstrap3.git' , branch: 'bootstrap3'
-
-#gem 'formtastic-bootstrap' , :git => 'https://github.com/mjbellantoni/formtastic-bootstrap.git'#, :branch => 'bootstrap2-rails3-2-formtastic-2-2'
-
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
-#gem 'jquery_datepicker'
-
-gem 'jquery-ui-themes'
-
 gem 'jquery-sparkline-rails', git: "https://github.com/RobAtHedtek/jquery-sparkline-rails.git"
 
 gem 'd3_rails'
-gem "nvd3-rails", :git => "git@github.com:adeven/nvd3-rails.git", :submodules => true
+gem 'nvd3-rails', :git => "git@github.com:adeven/nvd3-rails.git", :submodules => true
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

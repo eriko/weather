@@ -1,3 +1,29 @@
+<style type="text/css">
+    svg text { font: 14px sans-serif; text-anchor: middle }
+    svg .caption { font: 18px sans-serif; }
+    svg .axes { stroke: #aaa; stroke-width: 0.5px; fill: none; }
+    svg .labels text { letter-spacing: 1px; fill: #444; font-size: 12px; }
+    svg .arcs {  stroke: #000; stroke-width: 0.5px; }
+    svg .arctext text { font-size: 9px; }
+    svg #windrose .arctext { fill: #44d; }
+    svg #windspeed .arctext { fill: #933; }
+    svg .calmwind text {  font-size: 18px; }
+    svg text.calmcaption {  font-size: 12px; }
+    svg g.tickmarks>text { font-size: 10px; fill: #888;}
+
+    .stationname { text-transform: capitalize }
+
+
+
+    #monthControl { font: 16px sans-serif; }
+    #monthControl g.month { cursor: pointer; }
+    #monthControl g.month>path { fill: #ddd; stroke: black; stroke-width: 0.5px;}
+    #monthControl g.month>path.selected { fill: white; }
+    #monthControl circle.center { fill: white; }
+    #monthControl g.month>text { text-anchor: middle; fill: #666; }
+    #monthControl circle.backdrop { fill: #ccc; }
+</style>
+
 <svg class="tributary_svg" width="1464" height="843">
 
 </svg>
@@ -352,6 +378,12 @@
 
         selectedMonthControl = new monthControl(null);
         selectedMonthControl.install("#monthControlDiv");
+        svg.selectAll("text").style(textStyle);
+
+        svg.selectAll(".arcs").style({  stroke: "#000", "stroke-width": "0.5px", "fill-opacity": 0.9 })
+        svg.selectAll(".caption").style({ font: "18px sans-serif" });
+        svg.selectAll(".axes").style({ stroke: "#aaa", "stroke-width": "0.5px", fill: "none" })
+        svg.selectAll("text.arctext").style({ "font-size": "9px" })
 
     }
 
@@ -478,8 +510,8 @@
     }
 
 
-    //drawBigWindrose(data, "#windrose", "caption")
-    //drawBigWindrose(data, "#windspeed", "caption")
+    //drawBigWindrose(d, "#windrose", "caption")
+    //drawBigWindrose(d, "#windspeed", "caption")
 
     //need to reformat the data to get smallPlot to work, not sure how yet
     //var rollup = rollupForMonths(data, months);
