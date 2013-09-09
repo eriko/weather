@@ -25,6 +25,7 @@ Weather::Application.routes.draw do
       get 'about'
       get 'graph/:days/:graph_name'  , action: 'graph'  , as: 'graph'
       get 'graph/wind' , action: 'wind' , as: 'wind'
+      get 'evapotranspiration'
       end
   end
 

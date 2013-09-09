@@ -128,6 +128,12 @@ class CampbelsController < ApplicationController
       format.html # about.html.erb
     end
   end
+  def evapotranspiration
+
+    respond_to do |format|
+      format.html # evapotranspiration.html.erb
+    end
+  end
   # GET /campbels/1
   # GET /campbels/1.json
 
