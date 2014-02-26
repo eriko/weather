@@ -8,7 +8,7 @@ namespace :import do
       update_stations()
 
 
-      Prediction.update_predictions(DateTime.now.year)
+      Prediction.update_predictions(DateTime.now.year-1)
 
     rescue OpenURI::HTTPError => ex
       results = Airbrake.notify(ex, "action" => "imporrting tides")
