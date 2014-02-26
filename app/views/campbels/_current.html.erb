@@ -17,7 +17,7 @@
 
 <tr valign=top>
       <td align=left bgcolor="#FFFFFF"><strong> Rain </strong></td>
-      <td colspan="2"> There has been <%= @last_24.collect { |record| record.rain_mm_total }.inject(:+) %>mm of rain in the last 24 hours
+      <td colspan="2"> There has been <%= (@last_24.collect { |record| record.rain_mm_total }.inject(:+)).round(2) %>mm of rain in the last 24 hours
         <span class="inlinesparkline"><%= @last_24.collect { |record| @standard ? record.rain_mm_total * 10 : record.rain_mm_total }.join(',') %></span>'
 
       </td>
