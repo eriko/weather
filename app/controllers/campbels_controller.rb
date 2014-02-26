@@ -34,7 +34,7 @@ class CampbelsController < ApplicationController
     @sunrise = @sunrise.new_offset(-8.0/24)
     @sunset = @sunset.new_offset(-8.0/24)
 
-    @latest = Campbel.last
+    @latest = Campbel.order(:timestamp).last
 
     @tides = Hash.new
     stations = Station.all
