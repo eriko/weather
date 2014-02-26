@@ -39,7 +39,7 @@ class CampbelsController < ApplicationController
     @tides = Hash.new
     stations = Station.all
     stations.each do |station|
-      @tides[station] = Prediction.where(date: (Time.now.midnight - 1.day)..Time.now.midnight, station_id: station)
+      @tides[station] = Prediction.where(date: (Time.now.midnight - 1.day)..(Time.now.midnight + 2.days), station_id: station)
     end
 
 
