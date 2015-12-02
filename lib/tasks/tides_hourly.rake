@@ -7,8 +7,10 @@ namespace :import do
     begin
       update_stations()
 
-
+      #get updates to old data based on reality
       Prediction.update_predictions(DateTime.now.year-1)
+      #get future predictions
+      Prediction.update_predictions(DateTime.now.year)
 
     rescue OpenURI::HTTPError => ex
       results = Airbrake.notify(ex, "action" => "imporrting tides")
